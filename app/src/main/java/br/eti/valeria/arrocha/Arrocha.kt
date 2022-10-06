@@ -1,5 +1,6 @@
 package br.eti.valeria.arrocha
 
+import android.os.Bundle
 import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -42,6 +43,7 @@ class Arrocha : Serializable {
                 }
                 // Exibir no log o valor sorteado e o intervalo atualizado
                 Log.w("APP_ARROCHA", "(${this.menor},${this.maior})")
+//                Log.w("APP_ARROCHA", "Nivel: (${this@Arrocha.})")
 
                 if (this.isArrochado()){
                     this.status = Status.GANHOU
@@ -73,4 +75,13 @@ class Arrocha : Serializable {
     fun getSecreto(): String{
         return "Número sorteado: ${this.secreto}"
     }
+//    fun getNivelStr(): String{
+//        return "Nível: ${this.nivel}"
+//    }
+//    fun setNivel(nivel: Int) {
+//        this.nivel = nivel
+//    }
+//    fun getPontos(): Int {
+//        return this.pontos
+//    }
 }
