@@ -8,29 +8,16 @@
     tools:context=".TelaFinal"
     android:orientation="vertical"
     android:gravity="center">
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="RESULTADO"
+        android:padding="15dp"
+        android:textColor="@color/black"/>
+
+    <ListView
+        android:id="@+id/lvTF"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RESULTADO"
-            android:textSize="35dp"
-            android:textColor="@color/black"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3">
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
+        android:layout_height="match_parent"/>
 </LinearLayout>

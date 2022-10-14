@@ -17,13 +17,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar1: ProgressBar
     private lateinit var tvNivel: TextView
     private var nivel: Int
-    private var pontos: Int
-    private var pontosTotal: Int
 
     init {
         this.nivel = 1
-        this.pontos = 100
-        this.pontosTotal = 0
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +42,12 @@ class MainActivity : AppCompatActivity() {
     }
     inner class OnClickBotao: View.OnClickListener{
         override fun onClick(p0: View?) {
-            var numero = this@MainActivity.etNumero.text.toString().toInt()
-            var msg = this@MainActivity.arrocha.jogar(numero)
+            val numero = this@MainActivity.etNumero.text.toString().toInt()
+            val msg = this@MainActivity.arrocha.jogar(numero)
             try {
                 if (this@MainActivity.arrocha.getStatus() == Status.EXECUTANDO) {
                     Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
                     Log.w("APP_ARROCHA", "NÍVEL: (${nivel})")
-                    this@MainActivity.pontos-5
 
                     if (this@MainActivity.nivel==1) {
                         this@MainActivity.progressBar1.setProgress(progressBar1.progress+5)
@@ -63,27 +58,32 @@ class MainActivity : AppCompatActivity() {
                     if (this@MainActivity.nivel==3) {
                         this@MainActivity.progressBar1.setProgress(progressBar1.progress+15)
                     }
-
+                    if (this@MainActivity.nivel==4) {
+                        this@MainActivity.progressBar1.setProgress(progressBar1.progress+20)
+                    }
+                    if (this@MainActivity.nivel==5) {
+                        val intent = Intent(this@MainActivity, TelaFinal::class.java)
+                        startActivity(intent)
+                    }
                     if (this@MainActivity.progressBar1.progress == 100) {
                         this@MainActivity.arrocha.setStatus(Status.PERDEU)
                     }
                 } else {
-                    // navegar para tela resultado
-                    val intent = Intent(this@MainActivity, ResultadoActivity::class.java)
-                    intent.putExtra("MAIN", this@MainActivity.arrocha)
-//                        intent.putExtra("NIVEL", this@MainActivity.getNivel())
-//                        intent.putExtra("PONTOS", this@MainActivity.getPontos())
-                    startActivity(intent)
                     if (this@MainActivity.arrocha.getStatus()== Status.GANHOU){
                         setNivel(nivel+1)
-                        pontosTotal += pontos
                     }
                     if (this@MainActivity.arrocha.getStatus()== Status.PERDEU){
                         setNivel(1)
                     }
+                    // navegar para tela resultado
+                    val intent = Intent(this@MainActivity, ResultadoActivity::class.java)
+                    intent.putExtra("MAIN", this@MainActivity.arrocha)
+                    intent.putExtra("NIVEL", this@MainActivity.getNivel())
+                    startActivity(intent)
+
+
                     this@MainActivity.arrocha = Arrocha()
                     this@MainActivity.progressBar1.setProgress(0)
-                    this@MainActivity.pontos = 100
                 }
 
                 this@MainActivity.etNumero.setText("")
@@ -96,17 +96,12 @@ class MainActivity : AppCompatActivity() {
             //Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
         }
     }
-    fun getNivel(): Int {
+
+    public fun getNivel(): Int {
         return this.nivel
-    }
-    fun getPontos(): Int {
-        return this.pontosTotal
     }
     private fun setNivel(nivel: Int) {
         this.nivel = nivel
-    }
-    private fun setPontos(pontos: Int) {
-        this.pontos = pontos
     }
     private fun getNivelStr(): String {
         return "NÍVEL: ${this.nivel}"

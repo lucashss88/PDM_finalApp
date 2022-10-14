@@ -16,7 +16,7 @@
         android:gravity="center"
         android:orientation="vertical">
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:id="@+id/tvResultadoFinal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,11 +39,25 @@
             android:text="PRÓXIMO NÍVEL"
             android:visibility="invisible">
         </Button>
+        <Button
+            android:id="@+id/btnReiniciar"
+            android:text="REINICIAR JOGO"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+        <Button
+            android:id="@+id/btnSalvarResultado"
+            android:text="SALVAR RESULTADO"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.4"
         android:orientation="vertical"
         android:gravity="center">
         <TextView
@@ -63,14 +77,14 @@
             android:textColor="@color/white"
             android:textSize="20sp">
         </TextView>
-<!--        <TextView-->
-<!--            android:id="@+id/tvNivel"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text=""-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20sp">-->
-<!--        </TextView>-->
+        <TextView
+            android:id="@+id/tvNivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="20sp">
+        </TextView>
         <RatingBar
             android:id="@+id/ratingBar"
             android:rating="1"
