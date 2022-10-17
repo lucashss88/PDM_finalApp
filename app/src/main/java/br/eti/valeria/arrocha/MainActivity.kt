@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etNumero: EditText
     private lateinit var btArrocha: Button
     private lateinit var arrocha: Arrocha
-    private lateinit var fabAjustes: FloatingActionButton
     private lateinit var progressBar1: ProgressBar
     private lateinit var tvNivel: TextView
     private var nivel: Int
@@ -29,16 +28,11 @@ class MainActivity : AppCompatActivity() {
         this.arrocha = Arrocha()
         this.etNumero = findViewById(R.id.etMainNumero)
         this.btArrocha = findViewById(R.id.btMainArrocha)
-        this.fabAjustes = findViewById(R.id.fabAjustes)
         this.progressBar1 = findViewById(R.id.progressBar1)
         this.tvNivel = findViewById(R.id.tvNivelMain)
 
         this.btArrocha.setOnClickListener(OnClickBotao())
 
-        this.fabAjustes.setOnClickListener{
-            val intent = Intent(this, Ajustes::class.java)
-            startActivity(intent)
-        }
     }
     inner class OnClickBotao: View.OnClickListener{
         override fun onClick(p0: View?) {
@@ -48,7 +42,10 @@ class MainActivity : AppCompatActivity() {
                 if (this@MainActivity.arrocha.getStatus() == Status.EXECUTANDO) {
                     Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
                     Log.w("APP_ARROCHA", "NÍVEL: (${nivel})")
-
+//                    if (this@MainActivity.etNumero.text.toString() == "") {
+//                        val msg = "Digite algum valor!"
+//                        Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
+//                    }
                     if (this@MainActivity.nivel==1) {
                         this@MainActivity.progressBar1.setProgress(progressBar1.progress+5)
                     }
@@ -62,8 +59,8 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity.progressBar1.setProgress(progressBar1.progress+20)
                     }
                     if (this@MainActivity.nivel==5) {
-                        val intent = Intent(this@MainActivity, TelaFinal::class.java)
-                        startActivity(intent)
+                        this@MainActivity.setNivel(1)
+                        this@MainActivity.tvNivel.text = "1"
                     }
                     if (this@MainActivity.progressBar1.progress == 100) {
                         this@MainActivity.arrocha.setStatus(Status.PERDEU)
@@ -92,6 +89,9 @@ class MainActivity : AppCompatActivity() {
             catch (e: NumberFormatException) {
                 Toast.makeText(this@MainActivity, "Informe um número!", Toast.LENGTH_SHORT).show()
             }
+            catch (e: NullPointerException) {
+                Toast.makeText(this@MainActivity,"Informe um número", Toast.LENGTH_SHORT).show()
+            }
             //var msg = "Seu número é ${numero}"
             //Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
         }
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     public fun getNivel(): Int {
         return this.nivel
     }
-    private fun setNivel(nivel: Int) {
+    fun setNivel(nivel: Int) {
         this.nivel = nivel
     }
     private fun getNivelStr(): String {

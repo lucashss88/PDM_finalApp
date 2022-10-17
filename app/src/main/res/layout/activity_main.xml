@@ -10,31 +10,24 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAjustes"
-            android:foreground="@drawable/ic_baseline_settings_24"
-            android:backgroundTint="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="end"
-            app:borderWidth="0dp"/>
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:max="100"
-            android:progress="0"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:max="100"
+                android:progress="0"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
 
             <EditText
                 android:id="@+id/etMainNumero"
@@ -43,8 +36,6 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-
 
         </LinearLayout>
 

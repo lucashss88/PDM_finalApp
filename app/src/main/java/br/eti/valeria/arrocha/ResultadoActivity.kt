@@ -21,6 +21,7 @@ class ResultadoActivity : AppCompatActivity() {
     private lateinit var btnSalvarR: Button
     private lateinit var btnReiniciar: Button
     private lateinit var cadastro: Cadastro
+    private lateinit var mainActivity: MainActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado)
@@ -35,6 +36,7 @@ class ResultadoActivity : AppCompatActivity() {
         this.ratingBar = findViewById(R.id.ratingBar)
         this.btnSalvarR = findViewById(R.id.btnSalvarResultado)
         this.btnReiniciar = findViewById(R.id.btnReiniciar)
+        this.mainActivity = MainActivity()
 
         this.cadastro = Cadastro()
 
@@ -62,12 +64,14 @@ class ResultadoActivity : AppCompatActivity() {
 //                this.tvPontos.setText(pontos).toString()
                 this.llresultado.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
                 this.btnRestart.visibility = View.VISIBLE
+                this.tvNivelResultado.visibility = View.INVISIBLE
 //                this.tvNivel.setText(nivel).toString()
             }
             Toast.makeText(this,jogo.getStatus().toString(), Toast.LENGTH_SHORT).show()
         }
         if (intent.hasExtra("NIVEL")) {
-            val n = intent.getSerializableExtra("NIVEL") as Int
+            var n = intent.getSerializableExtra("NIVEL") as Int
+            n -= 1
             if (n==1) {
                 this.ratingBar.visibility = View.VISIBLE
             }
@@ -100,6 +104,7 @@ class ResultadoActivity : AppCompatActivity() {
 
     inner class OnClickReiniciar: View.OnClickListener {
         override fun onClick(p0: View?) {
+            finish()
         }
     }
 
