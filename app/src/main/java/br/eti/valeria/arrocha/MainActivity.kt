@@ -53,10 +53,10 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity.progressBar1.setProgress(progressBar1.progress+10)
                     }
                     if (this@MainActivity.nivel==3) {
-                        this@MainActivity.progressBar1.setProgress(progressBar1.progress+15)
+                        this@MainActivity.progressBar1.setProgress(progressBar1.progress+12)
                     }
                     if (this@MainActivity.nivel==4) {
-                        this@MainActivity.progressBar1.setProgress(progressBar1.progress+20)
+                        this@MainActivity.progressBar1.setProgress(progressBar1.progress+15)
                     }
                     if (this@MainActivity.nivel==5) {
                         this@MainActivity.setNivel(1)
